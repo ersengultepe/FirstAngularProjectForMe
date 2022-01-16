@@ -1,0 +1,42 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+  <app-subheader></app-subheader>
+
+  <ng-template #noProduct>
+    <app-alert></app-alert>
+  </ng-template>
+
+  <div class="container overflow-hidden">
+    <div class="row gy-5" *ngIf="products; else:noProduct ">
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Ürün Ara" aria-label="Ürün Ara"
+          aria-describedby="button-addon2" [(ngModel)]="filterText">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Ara</button>
+      </div>
+      <div>
+        <figcaption class="blockquote-footer" style="margin-top: -4%;" *ngIf="filterText">
+          <cite title="Source Title" style="font-weight: 500;">{{ filterText | titlecase }} </cite>arıyorsunuz
+        </figcaption>
+      </div>
+
+      <div class="col-6" *ngFor="let product of products | productFilter:filterText"  style="margin-top: -0.8%;" >
+        <div class="p-3 border bg-light">
+
+          <div class="card" style="width: 18rem;">
+            <img [src]="product.img" class="card-img-top" alt="{{product.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.price | currency:"TRY":" ₺ ":"1.2-2" }} {{" \n" + product.description}}
+              </p>
+              <span class="btn btn-primary" (click)="getToNotice(product)">Sepete Ekle</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>

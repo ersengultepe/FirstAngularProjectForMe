@@ -1,0 +1,29 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a routerLink="products/">
+              Tüm Ürünler
+            </a>
+                    </div>
+                </div>
+                <!-- Ürün Sayısı -->
+                <span class="badge bg-primary rounded-pill">Hepsi</span>
+            </li>
+            <li *ngFor="let category of categories" class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a routerLink="products/category/{{category.id}}">{{ category.name | titlecase }}
+            </a>
+                    </div>
+                </div>
+                <!-- Ürün Sayısı -->
+                <span class="badge bg-primary rounded-pill">{{ productCountByCategoryId(category.id)}}</span>
+            </li>
+
+        </ol>
+    </div>
+</nav>
